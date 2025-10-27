@@ -8,14 +8,16 @@ import java.awt.event.ActionListener;
 /**
  * Faculty Work Area — clean UI version.
  * Consistent style with admin panel.
- * @author jaya
+ * @author prekshapraveen
  */
 public class FacultyWorkAreaJPanel extends JPanel {
 
     private Business business;
     private JPanel rightPanel;
-    private JLabel titleLabel, welcomeLabel;
+    private JLabel titleLabel;
     private JButton btnMyProfile, btnManageCourses, btnViewStudents, btnGrades;
+    private JPanel contentPanel;  // Center area with CardLayout
+    private CardLayout cardLayout;
 
     public FacultyWorkAreaJPanel(Business business, JPanel rightPanel) {
         this.business = business;
@@ -41,10 +43,10 @@ public class FacultyWorkAreaJPanel extends JPanel {
         gbc.insets = new Insets(15, 15, 15, 15);
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
-        btnMyProfile = createButton("My Profile", e -> showMessage("Profile"));
-        btnManageCourses = createButton("Manage Courses", e -> showMessage("Courses"));
-        btnViewStudents = createButton("View Students", e -> showMessage("Students"));
-        btnGrades = createButton("Manage Grades", e -> showMessage("Grades"));
+        btnMyProfile = createButton("My Profile", e -> showPanel("PROFILE"));
+        btnManageCourses = createButton("Manage Courses", e -> showPanel("COURSES"));
+        btnViewStudents = createButton("View Students", e -> showPanel("STUDENTS"));
+        btnGrades = createButton("Manage Grades", e -> showPanel("GRADES"));
 
         gbc.gridx = 0;
         gbc.gridy = 0; menuPanel.add(btnMyProfile, gbc);
@@ -54,16 +56,26 @@ public class FacultyWorkAreaJPanel extends JPanel {
 
         add(menuPanel, BorderLayout.WEST);
 
-        // Center Panel
-        JPanel centerPanel = new JPanel(new BorderLayout());
-        centerPanel.setBackground(Color.WHITE);
+        // Center Panel — Card Layout for different sections
+        cardLayout = new CardLayout();
+        contentPanel = new JPanel(cardLayout);
+        contentPanel.setBackground(Color.WHITE);
 
-        welcomeLabel = new JLabel("Welcome, Faculty Member", SwingConstants.CENTER);
+        // Default welcome panel
+        JPanel welcomePanel = new JPanel(new BorderLayout());
+        JLabel welcomeLabel = new JLabel("Welcome, Faculty Member!", SwingConstants.CENTER);
         welcomeLabel.setFont(new Font("Segoe UI", Font.BOLD, 20));
         welcomeLabel.setForeground(new Color(0, 102, 204));
-        centerPanel.add(welcomeLabel, BorderLayout.CENTER);
+        welcomePanel.add(welcomeLabel, BorderLayout.CENTER);
 
-        add(centerPanel, BorderLayout.CENTER);
+        // Add subpanels
+        contentPanel.add(welcomePanel, "WELCOME");
+        contentPanel.add(new FacultyProfilePanel(business), "PROFILE");
+        contentPanel.add(new FacultyCourseManagementPanel(business), "COURSES");
+        contentPanel.add(new FacultyStudentPanel(business), "STUDENTS");
+        contentPanel.add(new FacultyGradesPanel(business), "GRADES");
+
+        add(contentPanel, BorderLayout.CENTER);
     }
 
     private JButton createButton(String text, ActionListener listener) {
@@ -91,9 +103,7 @@ public class FacultyWorkAreaJPanel extends JPanel {
         return button;
     }
 
-    private void showMessage(String section) {
-        JOptionPane.showMessageDialog(this,
-                "Opening " + section + " section (coming soon).",
-                "Faculty Portal", JOptionPane.INFORMATION_MESSAGE);
+    private void showPanel(String name) {
+        cardLayout.show(contentPanel, name);
     }
 }
