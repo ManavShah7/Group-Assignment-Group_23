@@ -1,4 +1,4 @@
-package UserInterface.WorkAreas.AdminRole.SubPanels;
+package UserInterface.WorkArea.AdminRole.SubPanels;
 
 import Business.Business;
 import Business.Person.Person;
