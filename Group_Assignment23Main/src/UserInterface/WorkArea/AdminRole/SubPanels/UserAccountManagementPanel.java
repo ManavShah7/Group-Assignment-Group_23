@@ -15,7 +15,7 @@ import java.awt.event.ActionEvent;
 /**
  * Admin panel for managing User Accounts (create, edit, delete).
  * Modernized UI + proper color contrast and layout polish.
- * @author Manav
+ * @author hiteshikawadia
  */
 public class UserAccountManagementPanel extends JPanel {
 
