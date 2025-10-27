@@ -10,139 +10,161 @@ import UserInterface.WorkAreas.AdminRole.AdminRoleWorkAreaJPanel;
 import UserInterface.WorkAreas.FacultyRole.FacultyWorkAreaJPanel;
 import UserInterface.WorkAreas.StudentRole.StudentWorkAreaJPanel;
 
-
 import javax.swing.*;
 import java.awt.*;
 
 /**
-
+ * Main JFrame for Digital University portal
+ * Clean modernized version with responsive split layout.
  * @author Manav
  */
-public class ProfileWorkAreaMainFrame extends javax.swing.JFrame {
+public class ProfileWorkAreaMainFrame extends JFrame {
 
     private Business business;
     private JSplitPane splitPane;
     private JPanel loginPanel, rightPanel;
-    private JLabel userLabel, passLabel, welcomeLabel;
-    private JTextField userField;
-    private JPasswordField passField;
-    private JButton loginButton;
+    private JLabel lblUsername, lblPassword, lblWelcome;
+    private JTextField txtUsername;
+    private JPasswordField txtPassword;
+    private JButton btnLogin;
 
     public ProfileWorkAreaMainFrame() {
-        initComponents();
         business = ConfigureABusiness.initialize();
+        initComponents();
         setTitle("Digital University ⚡");
         setLocationRelativeTo(null);
         setResizable(false);
     }
 
     private void initComponents() {
-        splitPane = new JSplitPane();
-        loginPanel = new JPanel();
-        rightPanel = new JPanel();
-        userLabel = new JLabel("Username:");
-        passLabel = new JLabel("Password:");
-        userField = new JTextField(12);
-        passField = new JPasswordField(12);
-        loginButton = new JButton("Login");
-        welcomeLabel = new JLabel("Digital University Portal", SwingConstants.CENTER);
-
+        // Frame setup
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setSize(1000, 600);
+        setSize(1100, 650);
         setLayout(new BorderLayout());
 
-        // --- Colors & Fonts ---
-        Color bgColor = new Color(25, 34, 50); // dark navy background
-        Color accent = new Color(51, 153, 255); // bright blue
-        Color textColor = Color.WHITE;
-        Font labelFont = new Font("Segoe UI", Font.PLAIN, 14);
-        Font buttonFont = new Font("Segoe UI", Font.BOLD, 16);
-        Font headerFont = new Font("Segoe UI", Font.BOLD, 22);
+        // Panels
+        loginPanel = new JPanel(new GridBagLayout());
+        rightPanel = new JPanel(new BorderLayout());
+        splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, loginPanel, rightPanel);
 
-        // --- Login Panel ---
-        loginPanel.setBackground(bgColor);
-        loginPanel.setLayout(new GridBagLayout());
+        // Colors
+        Color darkNavy = new Color(18, 25, 39);
+        Color blueAccent = new Color(0, 102, 204);
+        Color lightBg = new Color(245, 248, 255);
+
+        // Fonts
+        Font labelFont = new Font("Segoe UI", Font.PLAIN, 15);
+        Font headerFont = new Font("Segoe UI", Font.BOLD, 26);
+        Font buttonFont = new Font("Segoe UI", Font.BOLD, 16);
+
+        // --- Left (Login Panel) ---
+        loginPanel.setBackground(darkNavy);
         loginPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
-        userLabel.setForeground(textColor);
-        passLabel.setForeground(textColor);
-        userLabel.setFont(labelFont);
-        passLabel.setFont(labelFont);
+        lblWelcome = new JLabel("Digital University", SwingConstants.CENTER);
+        lblWelcome.setFont(headerFont);
+        lblWelcome.setForeground(Color.WHITE);
 
-        loginButton.setBackground(accent);
-        loginButton.setForeground(Color.WHITE);
-        loginButton.setFont(buttonFont);
-        loginButton.setFocusPainted(false);
-        loginButton.setBorder(BorderFactory.createEmptyBorder(10, 25, 10, 25));
-        loginButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        lblUsername = new JLabel("Username:");
+        lblUsername.setForeground(Color.WHITE);
+        lblUsername.setFont(labelFont);
 
-        // --- Add components with layout ---
+        lblPassword = new JLabel("Password:");
+        lblPassword.setForeground(Color.WHITE);
+        lblPassword.setFont(labelFont);
+
+        txtUsername = new JTextField(14);
+        txtPassword = new JPasswordField(14);
+
+        btnLogin = new JButton("Login");
+        btnLogin.setBackground(blueAccent);
+        btnLogin.setForeground(Color.WHITE);
+        btnLogin.setFont(buttonFont);
+        btnLogin.setFocusPainted(false);
+        btnLogin.setBorder(BorderFactory.createEmptyBorder(10, 25, 10, 25));
+        btnLogin.setCursor(new Cursor(Cursor.HAND_CURSOR));
+
+        btnLogin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnLogin.setBackground(new Color(30, 130, 230));
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnLogin.setBackground(blueAccent);
+            }
+        });
+
+        // Layout login components
         GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(10, 10, 10, 10);
+        gbc.insets = new Insets(12, 10, 12, 10);
         gbc.fill = GridBagConstraints.HORIZONTAL;
-
         gbc.gridx = 0; gbc.gridy = 0;
-        loginPanel.add(userLabel, gbc);
-        gbc.gridy++;
-        loginPanel.add(userField, gbc);
-        gbc.gridy++;
-        loginPanel.add(passLabel, gbc);
-        gbc.gridy++;
-        loginPanel.add(passField, gbc);
-        gbc.gridy++;
-        loginPanel.add(loginButton, gbc);
+        loginPanel.add(lblWelcome, gbc);
 
-        // --- Right Panel (Welcome screen) ---
-        rightPanel.setBackground(new Color(245, 248, 255));
-        rightPanel.setLayout(new BorderLayout());
-        welcomeLabel.setFont(headerFont);
-        welcomeLabel.setForeground(new Color(0, 102, 204));
-        rightPanel.add(welcomeLabel, BorderLayout.CENTER);
+        gbc.gridy++;
+        loginPanel.add(lblUsername, gbc);
+        gbc.gridy++;
+        loginPanel.add(txtUsername, gbc);
+        gbc.gridy++;
+        loginPanel.add(lblPassword, gbc);
+        gbc.gridy++;
+        loginPanel.add(txtPassword, gbc);
+        gbc.gridy++;
+        loginPanel.add(btnLogin, gbc);
 
-        // --- Split Pane ---
+        // --- Right (Dynamic Content) ---
+        rightPanel.setBackground(lightBg);
+        JLabel splash = new JLabel("Welcome to Digital University ⚡", SwingConstants.CENTER);
+        splash.setFont(new Font("Segoe UI", Font.BOLD, 26));
+        splash.setForeground(new Color(0, 70, 150));
+        rightPanel.add(splash, BorderLayout.CENTER);
+
+        // --- SplitPane setup ---
         splitPane.setDividerLocation(300);
-        splitPane.setLeftComponent(loginPanel);
-        splitPane.setRightComponent(rightPanel);
-        splitPane.setDividerSize(3);
+        splitPane.setResizeWeight(0);
+        splitPane.setOneTouchExpandable(true);
+        splitPane.setDividerSize(4);
+        splitPane.setContinuousLayout(true);
+        splitPane.setBorder(null);
         add(splitPane, BorderLayout.CENTER);
 
-        // --- Button action ---
-        loginButton.addActionListener(e -> handleLogin());
+        // Action
+        btnLogin.addActionListener(e -> handleLogin());
     }
 
+    /** Handles user authentication and role-based navigation */
     private void handleLogin() {
-        String username = userField.getText().trim();
-        String password = new String(passField.getPassword()).trim();
+        String username = txtUsername.getText().trim();
+        String password = new String(txtPassword.getPassword()).trim();
 
         if (username.isEmpty() || password.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Bruh... enter both username and password 😭");
+            JOptionPane.showMessageDialog(this, "Enter both username and password 😭");
             return;
         }
 
         UserAccountDirectory uad = business.getUserAccountDirectory();
-        UserAccount ua = uad.authenticateUser(username, password); 
+        UserAccount ua = uad.authenticateUser(username, password);
+
         if (ua == null) {
-            JOptionPane.showMessageDialog(this, "Invalid credentials! Try again ⚠️");
+            JOptionPane.showMessageDialog(this, "Invalid credentials ⚠️");
             return;
         }
 
-        // --- Successful login ---
-        rightPanel.removeAll();
-        JPanel nextPanel;
-
+        // Successful login
+        JPanel workArea;
         if (ua.getAssociatedPersonProfile() instanceof EmployeeProfile) {
-            nextPanel = new AdminRoleWorkAreaJPanel(business, rightPanel);
+            workArea = new AdminRoleWorkAreaJPanel(business, rightPanel);
         } else if (ua.getAssociatedPersonProfile() instanceof StudentProfile) {
-            nextPanel = new StudentWorkAreaJPanel(
-                business,
-                (StudentProfile) ua.getAssociatedPersonProfile(),
-                rightPanel
+            workArea = new StudentWorkAreaJPanel(
+                    business,
+                    (StudentProfile) ua.getAssociatedPersonProfile(),
+                    rightPanel
             );
         } else {
-            nextPanel = new FacultyWorkAreaJPanel(business, rightPanel);
+            workArea = new FacultyWorkAreaJPanel(business, rightPanel);
         }
 
-        rightPanel.add(nextPanel, BorderLayout.CENTER);
+        rightPanel.removeAll();
+        rightPanel.add(workArea, BorderLayout.CENTER);
         rightPanel.revalidate();
         rightPanel.repaint();
     }
