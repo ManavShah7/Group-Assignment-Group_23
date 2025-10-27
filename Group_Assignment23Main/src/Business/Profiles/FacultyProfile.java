@@ -4,7 +4,7 @@ import Business.Person.Person;
 
 /**
  * Profile for Faculty users.
- * @author Manav
+ * @author Jaya
  */
 public class FacultyProfile extends Profile {
 

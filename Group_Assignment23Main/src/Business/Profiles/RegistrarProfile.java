@@ -4,7 +4,7 @@ import Business.Person.Person;
 
 /**
  * Profile for Registrar role users.
- * @author Manav
+ * @author Jaya
  */
 public class RegistrarProfile extends Profile {
 
