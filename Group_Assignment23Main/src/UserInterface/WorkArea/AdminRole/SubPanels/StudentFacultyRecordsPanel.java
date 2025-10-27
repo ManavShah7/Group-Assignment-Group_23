@@ -1,4 +1,4 @@
-package UserInterface.WorkAreas.AdminRole.SubPanels;
+package UserInterface.WorkArea.AdminRole.SubPanels;
 
 import Business.Business;
 import Business.Person.Person;
@@ -12,7 +12,7 @@ import java.awt.event.ActionEvent;
 /**
  * Admin — Manage and search Student & Faculty records.
  * Full visual + functional upgrade (matching other panels).
- * @author Manav
+ * @author Hiteshikawadia
  */
 public class StudentFacultyRecordsPanel extends JPanel {
 
