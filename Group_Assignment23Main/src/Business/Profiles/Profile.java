@@ -5,7 +5,7 @@ import Business.Person.Person;
 /**
  * Abstract class for all profiles (Admin, Faculty, Student, Registrar).
  * Links to a Person and defines a role type.
- * @author Manav
+ * @author Jaya
  */
 public abstract class Profile {
 

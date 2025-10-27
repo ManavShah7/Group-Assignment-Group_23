@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * Directory for managing Person records.
  * Used to create and lookup people in the system.
- * @author Manav
+ * @author Jaya
  */
 public class PersonDirectory {
 

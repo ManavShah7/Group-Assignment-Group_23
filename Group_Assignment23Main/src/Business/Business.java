@@ -9,7 +9,7 @@ import Business.UserAccounts.UserAccountDirectory;
 
 /**
  * Root container for the Digital University business structure.
- * @author Manav
+ * @author Jaya
  */
 public class Business {
 

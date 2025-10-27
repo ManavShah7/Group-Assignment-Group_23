@@ -5,7 +5,7 @@ import Business.Person.Person;
 
 /**
  * Directory for Admin/Employee profiles.
- * @author Manav
+ * @author Jaya
  */
 public class EmployeeDirectory {
 
