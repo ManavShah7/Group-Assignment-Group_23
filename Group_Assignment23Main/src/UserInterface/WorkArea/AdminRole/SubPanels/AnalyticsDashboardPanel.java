@@ -1,4 +1,4 @@
-package UserInterface.WorkAreas.AdminRole.SubPanels;
+package UserInterface.WorkArea.AdminRole.SubPanels;
 
 import Business.Business;
 import Business.UserAccounts.UserAccount;
@@ -11,9 +11,9 @@ import java.awt.*;
 import java.util.HashMap;
 
 /**
- * University analytics dashboard for Admin.
+ * University  dashboard for Admin.
  * Shows overall statistics like users by role, course counts, and revenue.
- * @author Manav
+ * @author Hiteshikawadia
  */
 public class AnalyticsDashboardPanel extends JPanel {
 
