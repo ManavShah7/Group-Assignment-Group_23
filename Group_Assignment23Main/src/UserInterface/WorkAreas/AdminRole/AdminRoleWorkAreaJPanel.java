@@ -1,5 +1,5 @@
 package UserInterface.WorkAreas.AdminRole;
-import UserInterface.WorkAreas.AdminRole.SubPanels.*;
+import UserInterface.WorkArea.AdminRole.SubPanels.*;
 
 import Business.Business;
 import javax.swing.*;
