@@ -10,14 +10,13 @@ import UserInterface.WorkAreas.AdminRole.AdminRoleWorkAreaJPanel;
 import UserInterface.WorkAreas.FacultyRole.FacultyWorkAreaJPanel;
 import UserInterface.WorkAreas.StudentRole.StudentWorkAreaJPanel;
 
+
 import javax.swing.*;
 import java.awt.*;
 
 /**
- * Main frame for Digital University Part 1 project.
- * Handles login + role-based panel switching.
- * Clean, colorful, and Gen-Z friendly.
- * @author jaya
+
+ * @author Manav
  */
 public class ProfileWorkAreaMainFrame extends javax.swing.JFrame {
 

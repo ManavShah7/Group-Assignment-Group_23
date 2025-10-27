@@ -7,7 +7,7 @@ package Business.Profiles;
 
 /**
  *
- * @author Jaya
+ * @author kal bugrara
  */
 public class StudentAccount {
     

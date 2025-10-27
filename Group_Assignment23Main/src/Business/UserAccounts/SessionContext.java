@@ -3,7 +3,7 @@ package Business.UserAccounts;
 /**
  * Tracks the current active user session.
  * Used to share logged-in user info across the system.
- * @author Jaya
+ * @author Manav
  */
 public class SessionContext {
 

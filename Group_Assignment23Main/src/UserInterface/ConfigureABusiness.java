@@ -7,7 +7,7 @@ import Business.UserAccounts.*;
 
 /**
  * Seeds initial data for login testing and meets Part 1 requirements.
- * @author jaya
+ * @author Manav
  */
 public class ConfigureABusiness {
 

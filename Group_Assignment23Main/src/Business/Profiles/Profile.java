@@ -3,17 +3,17 @@ package Business.Profiles;
 import Business.Person.Person;
 
 /**
- * Abstract class for all profiles (Admin, Faculty, Student, Registrar).
- * Links to a Person and defines a role type.
- * @author Jaya
+ * Base class for all role profiles (Admin, Faculty, Student, Registrar).
+ * Connects a Person with their role in the system.
+ * @author Manav
  */
 public abstract class Profile {
 
     protected Person person;
     protected String role;
 
-    public Profile(Person p, String role) {
-        this.person = p;
+    public Profile(Person person, String role) {
+        this.person = person;
         this.role = role;
     }
 
@@ -27,6 +27,6 @@ public abstract class Profile {
 
     @Override
     public String toString() {
-        return role + ": " + person.getName();
+        return role + ": " + person.getPersonName();
     }
 }

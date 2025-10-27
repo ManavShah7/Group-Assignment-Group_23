@@ -5,7 +5,7 @@ import Business.Person.Person;
 
 /**
  * Directory for Registrar profiles.
- * @author Jaya
+ * @author Manav
  */
 public class RegistrarDirectory {
 

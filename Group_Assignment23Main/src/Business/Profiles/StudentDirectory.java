@@ -5,7 +5,7 @@ import Business.Person.Person;
 
 /**
  * Directory for Student profiles.
- * @author Jaya
+ * @author Manav
  */
 public class StudentDirectory {
 

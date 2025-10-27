@@ -1,22 +1,23 @@
 package UserInterface.WorkAreas.AdminRole;
+import UserInterface.WorkAreas.AdminRole.SubPanels.*;
 
 import Business.Business;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+
 /**
- * Admin Role Work Area — clean modern look (no emojis).
- * Simplified color scheme and consistent layout.
- * @author jaya
+ * @author Manav
  */
 public class AdminRoleWorkAreaJPanel extends JPanel {
 
-    private Business business;
-    private JPanel rightPanel;
+    private final Business business;
+    private final JPanel rightPanel;
 
-    private JButton btnMyProfile, btnAdminUsers, btnManageFaculty, btnManageStudents, btnRegisterPersons;
+    private JButton btnMyProfile, btnAdminUsers, btnManageRecords, btnRegisterPersons, btnAnalytics;
     private JLabel titleLabel;
+    private JPanel menuPanel, contentPanel;
 
     public AdminRoleWorkAreaJPanel(Business business, JPanel rightPanel) {
         this.business = business;
@@ -28,49 +29,46 @@ public class AdminRoleWorkAreaJPanel extends JPanel {
         setLayout(new BorderLayout());
         setBackground(new Color(240, 245, 255));
 
-        // --- Title Header ---
+        // --- Title ---
         titleLabel = new JLabel("Admin Control Center", SwingConstants.CENTER);
-        titleLabel.setFont(new Font("Segoe UI", Font.BOLD, 24));
+        titleLabel.setFont(new Font("Segoe UI", Font.BOLD, 26));
         titleLabel.setForeground(new Color(0, 70, 140));
         titleLabel.setBorder(BorderFactory.createEmptyBorder(20, 0, 20, 0));
         add(titleLabel, BorderLayout.NORTH);
 
-        // --- Left side menu ---
-        JPanel menuPanel = new JPanel();
-        menuPanel.setLayout(new GridBagLayout());
+        // --- Left-side Menu ---
+        menuPanel = new JPanel(new GridBagLayout());
         menuPanel.setBackground(new Color(25, 34, 50));
-
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(15, 15, 15, 15);
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
-        // --- Buttons ---
+        // --- Menu Buttons ---
         btnMyProfile = createStyledButton("My Profile", e -> handleClick("profile"));
         btnAdminUsers = createStyledButton("Manage User Accounts", e -> handleClick("users"));
-        btnManageFaculty = createStyledButton("Manage Faculty", e -> handleClick("faculty"));
-        btnManageStudents = createStyledButton("Manage Students", e -> handleClick("students"));
-        btnRegisterPersons = createStyledButton("Register Persons (HR)", e -> handleClick("register"));
+        btnRegisterPersons = createStyledButton("Register New Person", e -> handleClick("register"));
+        btnManageRecords = createStyledButton("Manage Records", e -> handleClick("records"));
+        btnAnalytics = createStyledButton("Analytics Dashboard", e -> handleClick("analytics"));
 
         gbc.gridx = 0;
         gbc.gridy = 0; menuPanel.add(btnMyProfile, gbc);
         gbc.gridy++; menuPanel.add(btnAdminUsers, gbc);
-        gbc.gridy++; menuPanel.add(btnManageFaculty, gbc);
-        gbc.gridy++; menuPanel.add(btnManageStudents, gbc);
         gbc.gridy++; menuPanel.add(btnRegisterPersons, gbc);
+        gbc.gridy++; menuPanel.add(btnManageRecords, gbc);
+        gbc.gridy++; menuPanel.add(btnAnalytics, gbc);
 
         add(menuPanel, BorderLayout.WEST);
 
-        // --- Center Panel Placeholder ---
-        JPanel centerPanel = new JPanel();
-        centerPanel.setBackground(new Color(250, 250, 255));
-        centerPanel.setLayout(new BorderLayout());
+        // --- Center Content Panel ---
+        contentPanel = new JPanel(new BorderLayout());
+        contentPanel.setBackground(new Color(250, 250, 255));
 
-        JLabel welcome = new JLabel("Welcome, System Admin", SwingConstants.CENTER);
+        JLabel welcome = new JLabel("Welcome, System Administrator", SwingConstants.CENTER);
         welcome.setFont(new Font("Segoe UI", Font.BOLD, 22));
         welcome.setForeground(new Color(0, 102, 204));
-        centerPanel.add(welcome, BorderLayout.CENTER);
+        contentPanel.add(welcome, BorderLayout.CENTER);
 
-        add(centerPanel, BorderLayout.CENTER);
+        add(contentPanel, BorderLayout.CENTER);
     }
 
     private JButton createStyledButton(String text, ActionListener action) {
@@ -99,9 +97,36 @@ public class AdminRoleWorkAreaJPanel extends JPanel {
         return button;
     }
 
+    /**
+     * Handles section switching between admin sub-panels
+     */
     private void handleClick(String section) {
-        JOptionPane.showMessageDialog(this,
-                "Opening " + section.toUpperCase() + " section (coming soon)",
-                "Navigation", JOptionPane.INFORMATION_MESSAGE);
+        contentPanel.removeAll();
+        JPanel panel;
+
+        switch (section) {
+            case "users":
+                panel = new UserAccountManagementPanel(business, contentPanel);
+                break;
+            case "register":
+                panel = new PersonRegistrationPanel(business, contentPanel);
+                break;
+            case "records":
+                panel = new StudentFacultyRecordsPanel(business,contentPanel);
+                break;
+            case "analytics":
+                panel = new AnalyticsDashboardPanel(business, contentPanel);
+                break;
+            case "profile":
+                panel = new AdminProfilePanel(business, contentPanel);
+                break;
+            default:
+                panel = new JPanel();
+                panel.add(new JLabel("Section not implemented yet"));
+        }
+
+        contentPanel.add(panel, BorderLayout.CENTER);
+        contentPanel.revalidate();
+        contentPanel.repaint();
     }
 }

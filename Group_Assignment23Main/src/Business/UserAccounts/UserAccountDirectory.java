@@ -5,7 +5,7 @@ import Business.Profiles.Profile;
 
 /**
  * Manages all system user accounts and authentication.
- * @author Jaya
+ * @author Manav
  */
 public class UserAccountDirectory {
 
