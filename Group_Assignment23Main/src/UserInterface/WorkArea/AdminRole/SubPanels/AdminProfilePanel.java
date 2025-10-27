@@ -1,4 +1,4 @@
-package UserInterface.WorkAreas.AdminRole.SubPanels;
+package UserInterface.WorkArea.AdminRole.SubPanels;
 
 import Business.Business;
 import Business.Person.Person;
@@ -9,7 +9,7 @@ import java.awt.*;
 /**
  * Admin Profile Panel — modernized look & fixed layout.
  * Matches updated Admin UI theme.
- * @author Manav
+ * @author Hiteshikawadia
  */
 public class AdminProfilePanel extends JPanel {
 
