@@ -1,4 +1,4 @@
-package UserInterface.WorkAreas.AdminRole.SubPanels;
+package UserInterface.WorkArea.AdminRole.SubPanels;
 
 import Business.Business;
 import Business.Person.Person;
@@ -11,7 +11,7 @@ import java.util.UUID;
 /**
  * Panel for Admin to register new persons (students, faculty, or registrar).
  * Supports role linkage, duplicate prevention, and auto-generated University ID.
- * @author Manav
+ * @author Hiteshikawadia
  */
 public class PersonRegistrationPanel extends JPanel {
 
