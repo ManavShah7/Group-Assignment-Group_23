@@ -1,14 +1,15 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package Business.Profiles;
 
 import Business.Person.Person;
-
 /**
- * Represents a faculty member's profile.
- * Includes department and title fields.
- * @author Manav
+ *
+ * @author prekshapraveen
  */
-public class FacultyProfile extends Profile {
-
+public class FacultyProfile extends Profile{
     private String department;
     private String title;
 
