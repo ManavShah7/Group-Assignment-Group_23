@@ -10,6 +10,8 @@ import java.awt.*;
  *
  * @author prekshapraveen
  */
+
+//grades section code
 public class FacultyGradesPanel extends JPanel {
     public FacultyGradesPanel(Business business) {
         setLayout(new BorderLayout());
