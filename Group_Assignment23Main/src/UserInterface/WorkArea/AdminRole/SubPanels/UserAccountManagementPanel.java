@@ -143,7 +143,7 @@ public class UserAccountManagementPanel extends JPanel {
         for (UserAccount ua : business.getUserAccountDirectory().getUserAccountList()) {
             Profile p = ua.getAssociatedPersonProfile();
             String name = (p != null && p.getPerson() != null)
-                    ? p.getPerson().getPersonName()
+                    ? p.getPerson().getName()
                     : "N/A";
             model.addRow(new Object[]{ua.getUsername(), ua.getRole().name(), name});
         }

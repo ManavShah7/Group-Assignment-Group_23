@@ -139,7 +139,7 @@ public class AdminProfilePanel extends JPanel {
         }
 
         Person p = adminAccount.getAssociatedPersonProfile().getPerson();
-        txtName.setText(p.getPersonName());
+        txtName.setText(p.getName());
         txtEmail.setText(p.getEmail());
         txtPhone.setText(p.getPhone());
         txtUsername.setText(adminAccount.getUsername());
@@ -151,7 +151,7 @@ public class AdminProfilePanel extends JPanel {
         if (adminAccount == null) return;
 
         Person p = adminAccount.getAssociatedPersonProfile().getPerson();
-        p.setPersonName(txtName.getText().trim());
+        p.setName(txtName.getText().trim());
         p.setEmail(txtEmail.getText().trim());
         p.setPhone(txtPhone.getText().trim());
         adminAccount.setUsername(txtUsername.getText().trim());

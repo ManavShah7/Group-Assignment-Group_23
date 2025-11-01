@@ -155,10 +155,10 @@ public class StudentFacultyRecordsPanel extends JPanel {
 
         for (StudentProfile sp : business.getStudentDirectory().getStudentList()) {
             Person p = sp.getPerson();
-            if (filter.isEmpty() || p.getPersonName().toLowerCase().contains(filter.toLowerCase())) {
+            if (filter.isEmpty() || p.getName().toLowerCase().contains(filter.toLowerCase())) {
                 model.addRow(new Object[]{
                         p.getPersonId(),
-                        p.getPersonName(),
+                        p.getName(),
                         "Student",
                         sp.getDepartment() == null ? "N/A" : sp.getDepartment(),
                         p.getEmail()
@@ -168,10 +168,10 @@ public class StudentFacultyRecordsPanel extends JPanel {
 
         for (FacultyProfile fp : business.getFacultyDirectory().getFacultyList()) {
             Person p = fp.getPerson();
-            if (filter.isEmpty() || p.getPersonName().toLowerCase().contains(filter.toLowerCase())) {
+            if (filter.isEmpty() || p.getName().toLowerCase().contains(filter.toLowerCase())) {
                 model.addRow(new Object[]{
                         p.getPersonId(),
-                        p.getPersonName(),
+                        p.getName(),
                         "Faculty",
                         fp.getDepartment() == null ? "N/A" : fp.getDepartment(),
                         p.getEmail()
@@ -194,7 +194,7 @@ public class StudentFacultyRecordsPanel extends JPanel {
         for (StudentProfile sp : business.getStudentDirectory().getStudentList()) {
             Person p = sp.getPerson();
             if (matches(p, sp.getDepartment(), type, query)) {
-                model.addRow(new Object[]{p.getPersonId(), p.getPersonName(), "Student",
+                model.addRow(new Object[]{p.getPersonId(), p.getName(), "Student",
                         sp.getDepartment() == null ? "N/A" : sp.getDepartment(), p.getEmail()});
             }
         }
@@ -202,7 +202,7 @@ public class StudentFacultyRecordsPanel extends JPanel {
         for (FacultyProfile fp : business.getFacultyDirectory().getFacultyList()) {
             Person p = fp.getPerson();
             if (matches(p, fp.getDepartment(), type, query)) {
-                model.addRow(new Object[]{p.getPersonId(), p.getPersonName(), "Faculty",
+                model.addRow(new Object[]{p.getPersonId(), p.getName(), "Faculty",
                         fp.getDepartment() == null ? "N/A" : fp.getDepartment(), p.getEmail()});
             }
         }
@@ -211,7 +211,7 @@ public class StudentFacultyRecordsPanel extends JPanel {
     private boolean matches(Person p, String dept, String type, String query) {
         switch (type) {
             case "Name":
-                return p.getPersonName().toLowerCase().contains(query);
+                return p.getName().toLowerCase().contains(query);
             case "ID":
                 return p.getPersonId().toLowerCase().contains(query);
             case "Department":
@@ -236,7 +236,7 @@ public class StudentFacultyRecordsPanel extends JPanel {
         if ((newDept == null || newDept.isEmpty()) && (newEmail == null || newEmail.isEmpty())) return;
 
         for (StudentProfile sp : business.getStudentDirectory().getStudentList()) {
-            if (sp.getPerson().getPersonName().equals(name)) {
+            if (sp.getPerson().getName().equals(name)) {
                 if (newDept != null && !newDept.isEmpty()) sp.setDepartment(newDept);
                 if (newEmail != null && !newEmail.isEmpty()) sp.getPerson().setEmail(newEmail);
                 JOptionPane.showMessageDialog(this, "✅ Student record updated!");
@@ -246,7 +246,7 @@ public class StudentFacultyRecordsPanel extends JPanel {
         }
 
         for (FacultyProfile fp : business.getFacultyDirectory().getFacultyList()) {
-            if (fp.getPerson().getPersonName().equals(name)) {
+            if (fp.getPerson().getName().equals(name)) {
                 if (newDept != null && !newDept.isEmpty()) fp.setDepartment(newDept);
                 if (newEmail != null && !newEmail.isEmpty()) fp.getPerson().setEmail(newEmail);
                 JOptionPane.showMessageDialog(this, "✅ Faculty record updated!");
@@ -265,8 +265,8 @@ public class StudentFacultyRecordsPanel extends JPanel {
         }
 
         String name = (String) model.getValueAt(row, 1);
-        business.getStudentDirectory().getStudentList().removeIf(s -> s.getPerson().getPersonName().equals(name));
-        business.getFacultyDirectory().getFacultyList().removeIf(f -> f.getPerson().getPersonName().equals(name));
+        business.getStudentDirectory().getStudentList().removeIf(s -> s.getPerson().getName().equals(name));
+        business.getFacultyDirectory().getFacultyList().removeIf(f -> f.getPerson().getName().equals(name));
 
         JOptionPane.showMessageDialog(this, "🗑️ Record deleted successfully!");
         populateTable("");
