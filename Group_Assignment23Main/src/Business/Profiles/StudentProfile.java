@@ -1,14 +1,16 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package Business.Profiles;
 
 import Business.Person.Person;
 
 /**
- * Represents a student profile linked to a Person.
- * Includes department and academic status fields.
- * @author Manav
+ *
+ * @author prekshapraveen
  */
-public class StudentProfile extends Profile {
-
+public class StudentProfile extends Profile{
     private String department;
     private String academicStatus;
 
