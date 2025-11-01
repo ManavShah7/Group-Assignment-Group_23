@@ -12,8 +12,8 @@ public abstract class Profile {
     protected Person person;
     protected String role;
 
-    public Profile(Person person, String role) {
-        this.person = person;
+    public Profile(Person p, String role) {
+        this.person = p;
         this.role = role;
     }
 
@@ -27,6 +27,6 @@ public abstract class Profile {
 
     @Override
     public String toString() {
-        return role + ": " + person.getPersonName();
+        return role + ": " + person.getName();
     }
 }
