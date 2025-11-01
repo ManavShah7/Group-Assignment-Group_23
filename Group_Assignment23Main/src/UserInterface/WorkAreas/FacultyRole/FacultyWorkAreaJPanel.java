@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
  */
 public class FacultyWorkAreaJPanel extends JPanel {
 
+    // attribute declaration
     private Business business;
     private JPanel rightPanel;
     private JLabel titleLabel;
