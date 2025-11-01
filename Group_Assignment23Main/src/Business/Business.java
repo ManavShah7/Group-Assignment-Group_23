@@ -1,10 +1,12 @@
 package Business;
 
+import Business.Course.CourseDirectory;
 import Business.Person.PersonDirectory;
 import Business.Profiles.EmployeeDirectory;
 import Business.Profiles.StudentDirectory;
 import Business.Profiles.FacultyDirectory;
 import Business.Profiles.RegistrarDirectory;
+import Business.UserAccounts.UserAccount;
 import Business.UserAccounts.UserAccountDirectory;
 
 /**
@@ -21,6 +23,8 @@ public class Business {
     private StudentDirectory studentDirectory;
     private RegistrarDirectory registrarDirectory;
     private UserAccountDirectory userAccountDirectory;
+    private CourseDirectory courseDirectory;
+    private UserAccount currentUser;
 
     public Business(String name) {
         this.name = name;
@@ -30,6 +34,7 @@ public class Business {
         this.studentDirectory = new StudentDirectory();
         this.registrarDirectory = new RegistrarDirectory();
         this.userAccountDirectory = new UserAccountDirectory();
+        this.courseDirectory = new CourseDirectory();
     }
 
     public String getName() { return name; }
@@ -40,4 +45,7 @@ public class Business {
     public StudentDirectory getStudentDirectory() { return studentDirectory; }
     public RegistrarDirectory getRegistrarDirectory() { return registrarDirectory; }
     public UserAccountDirectory getUserAccountDirectory() { return userAccountDirectory; }
+    public UserAccount getCurrentUser() {return currentUser;}
+    public void setCurrentUser(UserAccount ua) {this.currentUser = ua;}
+    public CourseDirectory getCourseDirectory() {return courseDirectory;}
 }
